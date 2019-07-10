@@ -1,3 +1,5 @@
+import model.Coordinate;
+
 import java.awt.*;
 import java.awt.event.InputEvent;
 
@@ -21,23 +23,13 @@ public class RobotHandler {
     }
 
     public void moveMouse(Coordinate coordinate) {
-        myRobot.mouseMove(coordinate.x, coordinate.y);
+        myRobot.mouseMove(coordinate.getX(), coordinate.getY());
     }
 
     public void moveAndClick(Coordinate coord) {
         myRobot.delay(2000);
-        myRobot.mouseMove(coord.x, coord.y);
+        myRobot.mouseMove(coord.getX(), coord.getY());
         myRobot.mousePress(InputEvent.BUTTON1_MASK);
         myRobot.mouseRelease(InputEvent.BUTTON1_MASK);
-    }
-
-    public static class Coordinate{
-        private final int x;
-        private final int y;
-
-        public Coordinate(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
     }
 }
