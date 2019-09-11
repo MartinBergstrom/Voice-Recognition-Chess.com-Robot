@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class MovePiece {
     @SerializedName("from")
-    private final Coordinate fromCoordinate;
+    private final ChessPosition fromPos;
     @SerializedName("to")
-    private final Coordinate toCoordinate;
+    private final ChessPosition toPos;
 
-    public MovePiece(Coordinate fromCoordinate, Coordinate toCoordinate) {
-        this.fromCoordinate = fromCoordinate;
-        this.toCoordinate = toCoordinate;
+    public MovePiece(ChessPosition fromPos, ChessPosition toPos) {
+        this.fromPos = fromPos;
+        this.toPos = toPos;
     }
 
-    public Coordinate getFromCoordinate() {
-        return fromCoordinate;
+    public ChessPosition getFromPos() {
+        return fromPos;
     }
 
-    public Coordinate getToCoordinate() {
-        return toCoordinate;
+    public ChessPosition getToPos() {
+        return toPos;
     }
 }

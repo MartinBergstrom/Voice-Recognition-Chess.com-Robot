@@ -5,12 +5,19 @@ public class ChessBoard {
     private int width;
     private int height;
 
-    public int getWidth() {
+    //private CoordinateResolver myCoordinateResolver; convert char and int to corresponding,
+    // maybe that should use chessboard isntead?
+
+    public int getTotalWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public int getTotalHeight() {
         return height;
+    }
+
+    public int getWidthOfSquare() {
+        return 0;
     }
 
     public void setWidth(int width) {
