@@ -1,16 +1,10 @@
-import model.Coordinate;
+package base;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
 
 public class RobotHandler {
     private final Robot myRobot;
-
-    // scritet kommer skicka röst from och to, "e1 to e3"
-    // logik för att räkna ut vilka koordinater som krävs för klicka mitten på ruta
-    // e1 till att klicka på mitten ruta e3
-    // scriptet skickar updaterad info om skärmstorlek
-    // samt enable/disable
 
     public RobotHandler() throws AWTException {
         myRobot = new Robot();

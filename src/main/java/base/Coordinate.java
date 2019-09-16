@@ -1,4 +1,4 @@
-package model;
+package base;
 
 public class Coordinate {
     private final int x;

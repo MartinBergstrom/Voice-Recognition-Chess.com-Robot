@@ -3,11 +3,14 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+import rest.handler.ChessScriptRequestHandler;
+
+import java.awt.*;
 
 public class JettyServer {
     public static final String PORT = "8045";
 
-    public JettyServer() {
+    public JettyServer() throws AWTException {
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         handler.setContextPath("/");
 
@@ -27,7 +30,7 @@ public class JettyServer {
         }
     }
 
-    private ResourceConfig createResourceConfig() {
+    private ResourceConfig createResourceConfig() throws AWTException {
         ResourceConfig resourceConfig = new ResourceConfig();
         ChessScriptRequestHandler chessScriptRequestHandler = new ChessScriptRequestHandler();
         resourceConfig.register(chessScriptRequestHandler);

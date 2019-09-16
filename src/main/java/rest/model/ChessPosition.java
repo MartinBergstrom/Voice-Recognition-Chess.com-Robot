@@ -1,4 +1,4 @@
-package model;
+package rest.model;
 
 public class ChessPosition {
     private final char letter;
