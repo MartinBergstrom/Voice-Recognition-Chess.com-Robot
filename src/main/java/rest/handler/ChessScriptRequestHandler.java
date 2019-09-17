@@ -1,11 +1,9 @@
 package rest.handler;
 
-import base.RobotHandler;
+import base.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import base.ChessBoard;
-import base.CoordinateResolver;
-import rest.model.BoardSize;
+import rest.model.ChessBoardMetaData;
 import rest.model.MovePiece;
 
 import javax.inject.Singleton;
@@ -37,20 +35,28 @@ public class ChessScriptRequestHandler {
     @Produces(MediaType.TEXT_PLAIN)
     public Response moveChessPiece(String payload)
     {
+        System.out.println("got move req");
+
         MovePiece movePiece = GSON.fromJson(payload, MovePiece.class);
+        Pair<Coordinate> coordinates = myCoordinateResolver.convert(movePiece);
+
+        myRobotHandler.moveMouse(myChessBoard.getStartingCoordinate());
+
         return Response.status(201)
                 .entity("Got the put request payload: " + payload)
                 .build();
     }
 
-    @Path("/updateBoardSize")
+    @Path("/updateBoardMeta")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateBoardSize(String payload)
     {
-        BoardSize boardSize = GSON.fromJson(payload, BoardSize.class);
-        myChessBoard.setWidth(boardSize.getBoardWidth());
+        System.out.println("got updateBoard meta");
+        ChessBoardMetaData chessBoardMetaData = GSON.fromJson(payload, ChessBoardMetaData.class);
+        myChessBoard.setWidth(chessBoardMetaData.getBoardWidth());
+        chessBoardMetaData.getStartingCoordinate().ifPresent(myChessBoard::setStartingCoordinate);
         return Response.status(201).build();
     }
 }

@@ -1,5 +1,8 @@
 package rest.model;
 
+/**
+ * Represents command from frontend, e.g. "A7" or "B4"
+ */
 public class ChessPosition {
     private final char letter;
     private final int digit;
