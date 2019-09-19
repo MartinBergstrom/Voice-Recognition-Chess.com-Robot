@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class MovePiece {
     @SerializedName("from")
-    private final ChessPosition fromPos;
+    private final ChessPositionVoiceCommand fromPos;
     @SerializedName("to")
-    private final ChessPosition toPos;
+    private final ChessPositionVoiceCommand toPos;
 
-    public MovePiece(ChessPosition fromPos, ChessPosition toPos) {
+    public MovePiece(ChessPositionVoiceCommand fromPos, ChessPositionVoiceCommand toPos) {
         this.fromPos = fromPos;
         this.toPos = toPos;
     }
 
-    public ChessPosition getFromPos() {
+    public ChessPositionVoiceCommand getFromPos() {
         return fromPos;
     }
 
-    public ChessPosition getToPos() {
+    public ChessPositionVoiceCommand getToPos() {
         return toPos;
     }
 }

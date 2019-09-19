@@ -5,9 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import rest.model.ChessBoardMetaData;
 import rest.model.MovePiece;
+import rest.model.validation.AnnotationValidationEngine;
 
 import javax.inject.Singleton;
+import javax.validation.*;
 import javax.ws.rs.*;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.awt.*;
@@ -22,6 +25,7 @@ public class ChessScriptRequestHandler {
     private final ChessBoard myChessBoard;
     private final CoordinateResolver myCoordinateResolver;
     private final RobotHandler myRobotHandler;
+
 
     public ChessScriptRequestHandler() throws AWTException {
         myChessBoard = new ChessBoard();
@@ -38,6 +42,16 @@ public class ChessScriptRequestHandler {
         System.out.println("got move req");
 
         MovePiece movePiece = GSON.fromJson(payload, MovePiece.class);
+
+        try {
+            AnnotationValidationEngine.runValidationOnBean(movePiece);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500)
+                    .entity("Validation failed with: " + e.getMessage())
+                    .build();
+        }
+
         Pair<Coordinate> coordinates = myCoordinateResolver.convert(movePiece);
 
         myRobotHandler.moveMouse(myChessBoard.getStartingCoordinate());
