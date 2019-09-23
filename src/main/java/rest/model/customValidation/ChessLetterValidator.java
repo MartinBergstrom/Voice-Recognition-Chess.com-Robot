@@ -1,4 +1,6 @@
-package rest.model.validation;
+package rest.model.customValidation;
+
+import main.Validator;
 
 public class ChessLetterValidator implements Validator<Character> {
 

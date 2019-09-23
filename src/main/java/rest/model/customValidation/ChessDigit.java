@@ -1,6 +1,6 @@
-package rest.model.validation.CustomAnnotations;
+package rest.model.customValidation;
 
-import rest.model.validation.ChessDigitValidator;
+import annotations.ValidatedBy;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

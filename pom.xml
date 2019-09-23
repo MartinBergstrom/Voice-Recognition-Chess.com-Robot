@@ -88,6 +88,12 @@
             <artifactId>guava</artifactId>
             <version>21.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.martin.ab</groupId>
+            <artifactId>Annodation</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
 
 
         <dependency>

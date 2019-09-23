@@ -1,7 +1,7 @@
 package rest.model;
 
-import rest.model.validation.CustomAnnotations.ChessDigit;
-import rest.model.validation.CustomAnnotations.ChessLetter;
+import rest.model.customValidation.ChessDigit;
+import rest.model.customValidation.ChessLetter;
 
 /**
  * Represents command from frontend, e.g. "A7" or "B4"

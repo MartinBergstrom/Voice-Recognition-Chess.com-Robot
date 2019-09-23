@@ -1,4 +1,6 @@
-package rest.model.validation;
+package rest.model.customValidation;
+
+import main.Validator;
 
 public class ChessDigitValidator implements Validator<Integer> {
 

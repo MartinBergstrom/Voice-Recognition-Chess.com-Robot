@@ -1,15 +1,16 @@
+import rest.model.ChessPositionVoiceCommand;
+import rest.model.MovePiece;
+
 import java.awt.*;
 import java.awt.event.InputEvent;
 
+import static main.AnnotationValidationEngine.runValidationOnBean;
+
 public class TestRobot {
-    public static void main(String[] args) throws AWTException {
-        Robot robot = new Robot();
-        robot.delay(5000);
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+        MovePiece movePiece = new MovePiece(new ChessPositionVoiceCommand('a', 1),
+                new ChessPositionVoiceCommand('b', 2));
 
-        robot.mouseMove(650,530);
-
-        robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.mouseRelease( InputEvent.BUTTON1_MASK );
-
+        runValidationOnBean(movePiece);
     }
 }

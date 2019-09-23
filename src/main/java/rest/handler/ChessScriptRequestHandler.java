@@ -3,12 +3,11 @@ package rest.handler;
 import base.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import main.AnnotationValidationEngine;
 import rest.model.ChessBoardMetaData;
 import rest.model.MovePiece;
-import rest.model.validation.AnnotationValidationEngine;
 
 import javax.inject.Singleton;
-import javax.validation.*;
 import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
