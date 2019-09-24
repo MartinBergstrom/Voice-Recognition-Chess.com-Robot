@@ -25,7 +25,6 @@ public class ChessScriptRequestHandler {
     private final CoordinateResolver myCoordinateResolver;
     private final RobotHandler myRobotHandler;
 
-
     public ChessScriptRequestHandler() throws AWTException {
         myChessBoard = new ChessBoard();
         myCoordinateResolver = new CoordinateResolver(myChessBoard);
@@ -38,8 +37,6 @@ public class ChessScriptRequestHandler {
     @Produces(MediaType.TEXT_PLAIN)
     public Response moveChessPiece(String payload)
     {
-        System.out.println("got move req");
-
         MovePiece movePiece = GSON.fromJson(payload, MovePiece.class);
 
         try {
@@ -51,13 +48,20 @@ public class ChessScriptRequestHandler {
                     .build();
         }
 
+        Coordinate startCoord = myChessBoard.getStartingCoordinate();
+        if (startCoord == null) {
+            return Response.status(500)
+                    .entity("No start coordinate set, updateBoardSize needs to be called prior to this")
+                    .build();
+        }
+
         Pair<Coordinate> coordinates = myCoordinateResolver.convert(movePiece);
+        myRobotHandler.moveMouse(startCoord);
+        myRobotHandler.moveAndClickHold(coordinates.getFirst());
+        myRobotHandler.moveMouse(coordinates.getSecond());
+        myRobotHandler.releaseMouseClick();
 
-        myRobotHandler.moveMouse(myChessBoard.getStartingCoordinate());
-
-        return Response.status(201)
-                .entity("Got the put request payload: " + payload)
-                .build();
+        return Response.status(201).build();
     }
 
     @Path("/updateBoardMeta")

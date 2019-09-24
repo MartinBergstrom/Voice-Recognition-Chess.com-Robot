@@ -6,7 +6,9 @@ public class ChessDigitValidator implements Validator<Integer> {
 
     @Override
     public void validate(Integer input) {
-        System.out.println("validating chess digit: " + input);
-        throw new RuntimeException("hehe");
+        if (input < 1 || input > 8) {
+            throw new ValidationException("Chess digit: " + input + " is invalid. Must be in the interval [1, 8]");
+        }
     }
+
 }

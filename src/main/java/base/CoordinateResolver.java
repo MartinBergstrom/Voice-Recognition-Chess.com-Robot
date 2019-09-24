@@ -23,24 +23,26 @@ public class CoordinateResolver {
         myChessBoard = chessBoard;
     }
 
-    public Coordinate resolveStartingCoordinate(Coordinate coordinate)
-    {
-        return new Coordinate(coordinate.getX(),  (Desktop.getHeight() - coordinate.getY()) );
-    }
-
     public Pair<Coordinate> convert(MovePiece movePiece) {
         // calculate with math shits, keep matrix? [][], or scale factor for x, y.
         // for x, just get width of board, get scale factor e= 5/8 = 0.625. divide that shit
         // then substract width of one square.
 
-        myChessBoard.getTotalWidth();
+        ChessBoardPosition convertedFrom = new ChessBoardPosition(movePiece.getFromPos());
+        ChessBoardPosition convertedTo = new ChessBoardPosition(movePiece.getToPos());
 
+        Coordinate resultCoordinateFrom = new Coordinate(calculateDelta(convertedFrom.convertedXpos), calculateDelta(convertedFrom.convertedYPos));
+        Coordinate resultCoordinateTo = new Coordinate(calculateDelta(convertedTo.convertedXpos), calculateDelta(convertedTo.convertedYPos));
 
-        return null;
+        return new Pair<>(resultCoordinateFrom, resultCoordinateTo);
     }
 
+    private int calculateDelta(int pos)  {
+        int widthOfSquare = myChessBoard.getWidthOfSquare();
+        return  (pos * widthOfSquare) - (widthOfSquare / 2);
+    }
 
-    private static class ChessBoardPosition{
+    private static class ChessBoardPosition {
         private int convertedXpos;
         private int convertedYPos;
 
@@ -61,9 +63,9 @@ public class CoordinateResolver {
             return ((8-x) % 8) + 1;
         }
 
-
         public ChessBoardPosition(ChessPositionVoiceCommand chessPositionVoiceCommand) {
             this.convertedXpos = X_AXIS.get(chessPositionVoiceCommand.getLetter());
+            this.convertedYPos = convertYAxisNumber(chessPositionVoiceCommand.getDigit());
         }
     }
 }

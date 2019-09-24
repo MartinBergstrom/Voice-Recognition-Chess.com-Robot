@@ -14,6 +14,16 @@ public class RobotHandler {
         myRobot.mouseMove(coordinate.getX(), coordinate.getY());
     }
 
+    public void releaseMouseClick() {
+        myRobot.mouseRelease(InputEvent.BUTTON1_MASK);
+    }
+
+    public void moveAndClickHold(Coordinate coord) {
+        myRobot.delay(2000);
+        myRobot.mouseMove(coord.getX(), coord.getY());
+        myRobot.mousePress(InputEvent.BUTTON1_MASK);
+    }
+
     public void moveAndClick(Coordinate coord) {
         myRobot.delay(2000);
         myRobot.mouseMove(coord.getX(), coord.getY());

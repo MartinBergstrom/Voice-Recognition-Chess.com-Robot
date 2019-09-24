@@ -1,5 +1,6 @@
 package rest.model;
 
+import com.google.gson.annotations.SerializedName;
 import rest.model.customValidation.ChessDigit;
 import rest.model.customValidation.ChessLetter;
 
@@ -9,9 +10,11 @@ import rest.model.customValidation.ChessLetter;
 public class ChessPositionVoiceCommand {
 
     @ChessLetter
+    @SerializedName("x")
     private final char letter;
 
     @ChessDigit
+    @SerializedName("y")
     private final int digit;
 
     public ChessPositionVoiceCommand(char letter, int digit) {
