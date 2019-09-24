@@ -64,6 +64,16 @@ public class ChessScriptRequestHandler {
         return Response.status(201).build();
     }
 
+
+    /* full screen is now
+        {
+	"width" : "792",
+	"startCoordinate": {
+		"x" : "396",
+		"y" : "168"
+	}
+}
+     */
     @Path("/updateBoardMeta")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

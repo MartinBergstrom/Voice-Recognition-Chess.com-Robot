@@ -6,6 +6,10 @@ import java.awt.event.InputEvent;
 public class RobotHandler {
     private final Robot myRobot;
 
+    public static void main(String[] args) throws AWTException {
+        new RobotHandler().moveMouse(new Coordinate(369, 168));
+    }
+
     public RobotHandler() throws AWTException {
         myRobot = new Robot();
     }

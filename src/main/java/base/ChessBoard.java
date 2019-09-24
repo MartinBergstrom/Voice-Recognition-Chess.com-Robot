@@ -26,7 +26,7 @@ public class ChessBoard {
     }
 
     public void setStartingCoordinate(Coordinate coordinate) {
-       this.myStartingCoordinate = new Coordinate(coordinate.getX(),  (Desktop.getHeight() - coordinate.getY()) );
+       this.myStartingCoordinate = coordinate;
     }
 
 }

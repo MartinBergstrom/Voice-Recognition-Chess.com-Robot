@@ -24,17 +24,19 @@ public class CoordinateResolver {
     }
 
     public Pair<Coordinate> convert(MovePiece movePiece) {
-        // calculate with math shits, keep matrix? [][], or scale factor for x, y.
-        // for x, just get width of board, get scale factor e= 5/8 = 0.625. divide that shit
-        // then substract width of one square.
-
         ChessBoardPosition convertedFrom = new ChessBoardPosition(movePiece.getFromPos());
         ChessBoardPosition convertedTo = new ChessBoardPosition(movePiece.getToPos());
 
         Coordinate resultCoordinateFrom = new Coordinate(calculateDelta(convertedFrom.convertedXpos), calculateDelta(convertedFrom.convertedYPos));
         Coordinate resultCoordinateTo = new Coordinate(calculateDelta(convertedTo.convertedXpos), calculateDelta(convertedTo.convertedYPos));
 
-        return new Pair<>(resultCoordinateFrom, resultCoordinateTo);
+        return new Pair<>(resolveDelta(resultCoordinateFrom), resolveDelta(resultCoordinateTo));
+    }
+
+    private Coordinate resolveDelta(Coordinate deltaCoordinate) {
+        Coordinate startCoordinate = myChessBoard.getStartingCoordinate();
+        return new Coordinate(startCoordinate.getX() + deltaCoordinate.getX(),
+                startCoordinate.getY() + deltaCoordinate.getY());
     }
 
     private int calculateDelta(int pos)  {
